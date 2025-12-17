@@ -1,4 +1,3 @@
-#include "esp32-hal-adc.h"
 #include <Arduino.h>
 
 const int POT = 4;
