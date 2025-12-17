@@ -210,3 +210,7 @@ __marimo__/
 .pio
 .pioenvs
 .piolibdeps
+compile_commands.json
+
+# Nvim
+.clang-format
