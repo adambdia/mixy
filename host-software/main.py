@@ -10,4 +10,13 @@ ser.reset_input_buffer()
 with ser:
     while True:
         data = ser.readline()
-        print(data.decode())
+        data = data.decode()
+        data = data.strip()
+        print(
+            "Data in: ",
+            data,
+            "Game level: ",
+            data,
+            "Chat Level: ",
+            100 - int(data),
+        )

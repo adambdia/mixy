@@ -11,5 +11,8 @@ void loop()
 {
     int reading = analogRead(POT);
     int level = map(reading, 0, 4095, 0, 100);
-    Serial.println(level);
+    char buf[8] = {0};
+    itoa(level, buf, 10);
+    strcat(buf, "\n");
+    Serial.print(buf);
 }
