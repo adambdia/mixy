@@ -214,3 +214,10 @@ compile_commands.json
 
 # Nvim
 .clang-format
+
+# CAD exports
+*.stp
+*.stl
+
+# FreeCAD
+*.FCBak
