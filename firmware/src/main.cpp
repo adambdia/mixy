@@ -1,10 +1,11 @@
 #include <Arduino.h>
 
-const int POT = 4;
+const int POT = 26;
 
 void setup()
 {
     Serial.begin(9600);
+    analogReadResolution(12);
 }
 
 void loop()
