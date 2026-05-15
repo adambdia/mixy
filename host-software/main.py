@@ -4,6 +4,8 @@ import serial
 import pulsectl
 from time import sleep
 
+old_vol = 0
+
 
 def volume_from_dial(dial):
     game = 0
@@ -41,8 +43,10 @@ while True:
         data = data.decode()
         data = int(data)
         game_vol, chat_vol = volume_from_dial(data)
-        print("Data: ", data, "Game: ", game_vol, " Chat: ", chat_vol)
-        set_volume(pulse, game_sink, chat_sink, game_vol, chat_vol)
+        # print("Data: ", data, "Game: ", game_vol, " Chat: ", chat_vol)
+        if old_vol != game_vol:  # avoid constantly setting the volume
+            set_volume(pulse, game_sink, chat_sink, game_vol, chat_vol)
+            old_vol = game_vol
     except KeyboardInterrupt:
         break
     except Exception as e:
