@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import serial
+import serial.tools.list_ports
 import pulsectl
 from time import sleep
 
@@ -25,9 +26,21 @@ def set_volume(pulse, game, chat, game_vol, chat_vol):
     pulse.volume_set_all_chans(chat, chat_vol)
 
 
-print("Opening serial port...")
-ser = serial.Serial("/dev/ttyACM0", baudrate=9600, timeout=1)
-print("Port opened.")
+def open_device():
+    print("Opening serial port...")
+    ser = None
+    mixy_port = None
+    ports = serial.tools.list_ports.comports()
+    for port in ports:
+        if "mixy Audio Dial" in port.description:
+            mixy_port = port.device
+
+    ser = serial.Serial(mixy_port, baudrate=9600, timeout=1)
+    print("Port opened.")
+    return ser
+
+
+ser = open_device()
 sleep(1)
 ser.reset_input_buffer()
 
