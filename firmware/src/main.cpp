@@ -1,9 +1,12 @@
+#include <Adafruit_TinyUSB.h>
 #include <Arduino.h>
 
 const int POT = 26;
 
 void setup()
 {
+    USBDevice.setManufacturerDescriptor("Adam Dia");
+    USBDevice.setProductDescriptor("mixy Audio Dial");
     Serial.begin(9600);
     analogReadResolution(12);
 }
