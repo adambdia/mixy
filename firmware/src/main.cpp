@@ -3,7 +3,7 @@
 #include <cstdint>
 
 const int POT = 26;
-const uint32_t LOOP_PERIOD = 100; // 100 ms
+const uint32_t LOOP_PERIOD = 50; // 100 ms
 uint32_t last_loop = 0;
 
 void setup()
