@@ -16,8 +16,8 @@ ser.reset_input_buffer()
 
 pulse = pulsectl.Pulse("mixy")
 sinks = pulse.sink_list()
-desktop_sink = next(s for s in sinks if s.name == "input.mixy_desktop_sink")
-chat_sink = next(s for s in sinks if s.name == "input.mixy_chat_sink")
+desktop_sink = next(s for s in sinks if s.name == "mixy_desktop_sink")
+chat_sink = next(s for s in sinks if s.name == "mixy_chat_sink")
 
 while True:
     try:
