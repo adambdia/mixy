@@ -1,0 +1,11 @@
+.include /etc/pulse/default.pa
+
+### Desktop Audio Sink
+load-module module-null-sink sink_name=mixy_desktop_sink
+update-sink-proplist mixy_desktop_sink device.description="Desktop Audio"
+load-module module-loopback source=mixy_desktop_sink.monitor
+
+### Chat Audio Sink
+load-module module-null-sink sink_name=mixy_chat_sink
+update-sink-proplist mixy_chat_sink device.description="Chat Audio"
+load-module module-loopback source=mixy_chat_sink.monitor
