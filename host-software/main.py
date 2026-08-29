@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
-import serial
-import serial.tools.list_ports
 import pulsectl
+import serial
 from time import sleep
 import mixy
 
@@ -10,10 +9,6 @@ old_vol = 0
 
 
 ser = mixy.open_device()
-sleep(1)
-ser.reset_input_buffer()
-
-
 pulse = pulsectl.Pulse("mixy")
 sinks = pulse.sink_list()
 desktop_sink = next(s for s in sinks if s.name == "mixy_desktop_sink")
@@ -31,6 +26,10 @@ while True:
             old_vol = game_vol
     except KeyboardInterrupt:
         break
+    except serial.serialutil.SerialException:
+        print("Lost connection to Mixy, reconnecting...")
+        ser.close()
+        ser = mixy.open_device()
     except Exception as e:
         print(e)
 
