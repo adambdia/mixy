@@ -1,0 +1,6 @@
+packaging==26.3
+playsound3==3.3.2
+pulsectl==24.12.0
+pyserial==3.5
+setuptools==84.0.0
+wheel==0.48.0
