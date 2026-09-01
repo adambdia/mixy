@@ -2,11 +2,25 @@ import serial
 import serial.tools.list_ports
 import pulsectl
 from time import sleep
+from playsound3 import playsound
+from pathlib import Path
 
 GET_MIXY_PORT_DELAY = 5
 GET_SINKS_DELAY = 5
 
 last_data = 0
+
+BASEDIR = Path(__file__).resolve().parent
+POP_SOUND = BASEDIR / "pop.wav"
+POP_DEADZONE = 5
+in_deadzone = False
+
+
+def dial_in_deadzone(dial):
+    if (50 - POP_DEADZONE) < dial and dial < (50 + POP_DEADZONE):
+        return True
+    else:
+        return False
 
 
 def volume_from_dial(dial):
@@ -78,3 +92,7 @@ def open_device():
     ser.reset_input_buffer()
     print("Port opened.", flush=True)
     return ser
+
+
+def play_pop():
+    playsound(POP_SOUND, block=False)

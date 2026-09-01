@@ -14,13 +14,7 @@ print("Starting loop.", flush=True)
 while True:
     try:
         raw_data = ser.readline()
-        if not raw_data:
-            continue
-
         data_str = raw_data.decode(errors="ignore").strip()
-        if not data_str:
-            continue
-
         dial_val = int(data_str)
         desktop_vol, chat_vol = mixy.volume_from_dial(dial_val)
         # avoid constantly setting the volume
@@ -29,6 +23,15 @@ while True:
             mixy.set_volume(pulse, desktop_sink, chat_sink, desktop_vol, chat_vol)
             old_desktop_vol = desktop_vol
             old_chat_vol = chat_vol
+
+        # sound feedback
+        if mixy.dial_in_deadzone(dial_val):
+            if mixy.in_deadzone == False:
+                mixy.play_pop()
+                mixy.in_deadzone = True
+        else:
+            mixy.in_deadzone = False
+
     except KeyboardInterrupt:
         break
     except serial.serialutil.SerialException:
