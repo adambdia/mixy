@@ -26,7 +26,7 @@ Turn all the way to the left for desktop only, and all the way to the right for 
 - Solder up the potentiometer as a 3.3V voltage divider to pin 26
 - Screw on the potentiometer to the lid with its nut
 - Hotglue the board in place with the USB port flush with the shell
-- Upload code to board from the firmware folder
+- Upload code to board from the firmware folder with platformio
 
 ## Setup Software
 - Create a venv and install packages from `requirements.txt`
